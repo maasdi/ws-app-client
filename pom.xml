@@ -46,6 +46,9 @@
 						<schema>
 							<url>http://localhost:8080/ws-app/service/FarmCertification.wsdl</url>
 						</schema>
+						<schema>
+							<url>http://localhost:8080/ws-app/service/Attachment.wsdl</url>
+						</schema>
 					</schemas>
 				</configuration>
 

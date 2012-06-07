@@ -7,13 +7,29 @@
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<bean id="jaxb" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
-		<property name="contextPath" value="com.maasdianto.certificate" />
+		<property name="contextPath" value="com.maasdianto.certification" />
+	</bean>
+	
+	<bean id="jaxbMtom" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.maasdianto.attachment" />
+		<property name="mtomEnabled" value="true" />
 	</bean>
 
 	<bean id="webserviceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
 		<property name="defaultUri" value="http://localhost:8080/ws-app/service/" />
 		<property name="marshaller" ref="jaxb" />
 		<property name="unmarshaller" ref="jaxb" />
+		<property name="interceptors">
+			<list>
+				<ref bean="wsSecurityInterceptor" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="webserviceTemplateMtom" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<property name="defaultUri" value="http://localhost:8080/ws-app/service/" />
+		<property name="marshaller" ref="jaxbMtom" />
+		<property name="unmarshaller" ref="jaxbMtom" />
 		<property name="interceptors">
 			<list>
 				<ref bean="wsSecurityInterceptor" />
